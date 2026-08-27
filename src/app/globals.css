@@ -1,0 +1,200 @@
+@import "tailwindcss";
+
+/* ---- Self-hosted fonts (fontsource) — no external font CDN calls ---- */
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/jetbrains-mono/400.css";
+@import "@fontsource/jetbrains-mono/500.css";
+
+/* ===================================================================
+   CoreSetup Studio - "Engineered Cosmic" Design System (v5, React)
+   ===================================================================
+   Same brand as the previous static build: near-black canvas, one
+   locked gold accent, pill buttons, hairline cards, mono eyebrows,
+   negative-tracked display type. This pass pushes the visual grammar
+   further with a spotlight-glow motif (reused across the hero, bento
+   tiles and review cards) and a real interactive 3D scene in the
+   hero, replacing the hand-rolled canvas globe from the static
+   version. All copy is unchanged from that version - only the
+   presentation layer moved to React/Tailwind/shadcn.
+   =================================================================== */
+
+:root {
+  /* ---- Fonts: self-hosted via @fontsource, no Google Fonts network call ---- */
+  --font-inter: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    system-ui, sans-serif;
+  --font-jetbrains-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular",
+    Menlo, monospace;
+
+  /* ---- Surface: single near-black canvas, no light mode ---- */
+  --canvas: #08080a;
+  --canvas-soft: #121114;
+  --canvas-elevated: #1b1913;
+  --canvas-card: #141311;
+  --canvas-card-hover: #1c1a15;
+
+  /* ---- Brand: gold on black, single locked accent ---- */
+  --gold: #c9a961;
+  --gold-bright: #f0d999;
+  --gold-deep: #8a6d2f;
+  --gold-glow: 201 169 97;
+  --on-gold: #14110a;
+
+  /* ---- Text ---- */
+  --ink: #f6f4ee;
+  --body: #bcb6a9;
+  --body-mid: #948d7b;
+  --body-faint: #837c6c;
+
+  /* ---- Hairlines ---- */
+  --hairline: rgba(246, 244, 238, 0.1);
+  --hairline-soft: rgba(246, 244, 238, 0.06);
+  --hairline-gold: rgba(201, 169, 97, 0.4);
+
+  /* ---- shadcn/ui semantic tokens, mapped onto the brand palette ---- */
+  --background: var(--canvas);
+  --foreground: var(--ink);
+  --card: var(--canvas-card);
+  --card-foreground: var(--ink);
+  --popover: var(--canvas-elevated);
+  --popover-foreground: var(--ink);
+  --primary: var(--gold);
+  --primary-foreground: var(--on-gold);
+  --secondary: var(--canvas-elevated);
+  --secondary-foreground: var(--ink);
+  --muted: var(--canvas-soft);
+  --muted-foreground: var(--body-mid);
+  --accent: var(--canvas-elevated);
+  --accent-foreground: var(--gold-bright);
+  --destructive: #c9615a;
+  --destructive-foreground: #fff;
+  --border: var(--hairline);
+  --input: var(--hairline);
+  --ring: var(--gold);
+  --radius: 0.5rem;
+
+  --wrap-max: 1200px;
+  --nav-h: 76px;
+}
+
+@theme inline {
+  --color-canvas: var(--canvas);
+  --color-canvas-soft: var(--canvas-soft);
+  --color-canvas-elevated: var(--canvas-elevated);
+  --color-canvas-card: var(--canvas-card);
+  --color-canvas-card-hover: var(--canvas-card-hover);
+
+  --color-gold: var(--gold);
+  --color-gold-bright: var(--gold-bright);
+  --color-gold-deep: var(--gold-deep);
+  --color-on-gold: var(--on-gold);
+
+  --color-ink: var(--ink);
+  --color-body: var(--body);
+  --color-body-mid: var(--body-mid);
+  --color-body-faint: var(--body-faint);
+
+  --color-hairline: var(--hairline);
+  --color-hairline-soft: var(--hairline-soft);
+  --color-hairline-gold: var(--hairline-gold);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jetbrains-mono);
+
+  --animate-marquee: marquee-scroll 34s linear infinite;
+}
+
+/* ===================================================================
+   Reset & base
+   =================================================================== */
+* {
+  border-color: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgb(var(--gold-glow) / 0.35);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* ---- Spline suspense fallback loader ---- */
+.loader {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 2px solid rgb(var(--gold-glow) / 0.25);
+  border-top-color: var(--gold);
+  animation: loader-spin 0.8s linear infinite;
+}
+@keyframes loader-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ---- Fine noise-grain overlay used behind spotlight cards, adds
+   material depth instead of a flat gradient block. Purely
+   decorative, aria-hidden everywhere it's used. ---- */
+.grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
